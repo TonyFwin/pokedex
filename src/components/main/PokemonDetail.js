@@ -110,25 +110,32 @@ export default class PokemonDetail extends Component {
     });
   }
   render() {
+    const {
+      imageUrl,
+      name,
+      isLoading,
+      pokemonIndex,
+      types,
+      stats,
+      description
+    } = this.state;
     return (
       <div className='w-full'>
-        {this.state.isLoading ? <p>loading...</p> : null}
+        {isLoading ? <p>loading...</p> : null}
         <div
           style={{
             backgroundColor: `#${
-              this.state.types[1]
-                ? TYPE_COLORS[this.state.types[1]]
-                : TYPE_COLORS[this.state.types[0]]
+              types[1] ? TYPE_COLORS[types[1]] : TYPE_COLORS[types[0]]
             }`
           }}
           className='w-full text-xl font-bold tracking-wide p-6 text-center'
         >
           <h1 className='capitalize '>
-            {this.state.name} {`#${this.state.pokemonIndex}`}
+            {name} {`#${pokemonIndex}`}
           </h1>
         </div>
         <div className='w-full flex content-center justify-end mt-1'>
-          {this.state.types.map(type => (
+          {types.map(type => (
             <span
               style={{ backgroundColor: `#${TYPE_COLORS[type]}` }}
               className=' capitalize ml-1 p-2'
@@ -140,23 +147,19 @@ export default class PokemonDetail extends Component {
         </div>
         <div className='flex'>
           <div className='w-1/2'>
-            <img
-              className='w-1/3 m-auto'
-              src={this.state.imageUrl}
-              alt={this.state.name}
-            />
+            <img className='w-1/3 m-auto' src={imageUrl} alt={name} />
           </div>
           <div className='w-1/2'>
-            <div>HP: {this.state.stats.hp}</div>
-            <div>Attack: {this.state.stats.attack}</div>
-            <div>Defense: {this.state.stats.defense}</div>
-            <div>Speed: {this.state.stats.speed}</div>
-            <div>Special Attack: {this.state.stats.specialAttack}</div>
-            <div>Special Defense: {this.state.stats.specialDefense}</div>
+            <div>HP: {stats.hp}</div>
+            <div>Attack: {stats.attack}</div>
+            <div>Defense: {stats.defense}</div>
+            <div>Speed: {stats.speed}</div>
+            <div>Special Attack: {stats.specialAttack}</div>
+            <div>Special Defense: {stats.specialDefense}</div>
           </div>
         </div>
         <div className='w-full'>
-          <p>{this.state.description}</p>
+          <p>{description}</p>
         </div>
       </div>
     );

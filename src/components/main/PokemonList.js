@@ -15,10 +15,11 @@ export default class PokemonList extends Component {
   }
 
   render() {
+    const { pokemon } = this.state;
     return (
       <div className='w-full flex flex-wrap justify-around'>
-        {this.state.pokemon ? (
-          this.state.pokemon.map(poke => (
+        {pokemon ? (
+          pokemon.map(poke => (
             <PokemonCard key={poke.name} name={poke.name} url={poke.url} />
           ))
         ) : (
