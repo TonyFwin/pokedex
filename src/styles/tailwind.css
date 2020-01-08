@@ -11387,6 +11387,12 @@ video {
   z-index: auto;
 }
 
+footer a {
+  color: #4299e1;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
