@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 
+import spinner from './6.gif';
+
 export default class PokemonCard extends Component {
   state = {
     name: '',
     imageUrl: '',
-    pokemonIndex: ''
+    pokemonIndex: '',
+    imageLoading: true,
+    imageError: false
   };
-  render() {
+
+  componentDidMount() {
     const { name, url } = this.props;
+    const pokemonIndex = url.split('/')[url.split('/').length - 2];
+    const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`;
+
+    this.setState({
+      name,
+      imageUrl,
+      pokemonIndex
+    });
+  }
+
+  render() {
     return (
-      <div className=' px-4 py-2 max-w-sm rounded bg-gray-400 overflow-hidden shadow-lg mb-4'>
+      <div className='px-4 py-2 max-w-sm rounded bg-gray-400 overflow-hidden shadow-lg mb-4'>
+        {this.state.imageLoading ? <img src={spinner} /> : null}
         <img
-          className='w-full'
-          src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
-          alt=''
+          className=''
+          src={this.state.imageUrl}
+          alt={this.state.name}
+          onLoad={() => this.setState({ imageLoading: false })}
+          onError={() => this.setState({ imageError: true })}
         />
-        <div className='font-bold text-l text-base'>{name}</div>
-        <p className='text-gray-700 text-base'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p>
+        <div className='font-bold text-l text-base capitalize'>
+          {this.state.pokemonIndex} {this.state.name}
+        </div>
       </div>
     );
   }

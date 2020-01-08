@@ -14,7 +14,7 @@ export default class Navbar extends Component {
               <img src={Pokeball} alt='Pokeball' /> Pokedex
             </a>
             <a
-              href='tonynguyen.dev'
+              href='https://tonynguyen.dev/'
               className='block mt4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4'
               target='_blank'
             >
