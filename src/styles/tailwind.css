@@ -11387,6 +11387,10 @@ video {
   z-index: auto;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
